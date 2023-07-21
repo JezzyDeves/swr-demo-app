@@ -1,6 +1,7 @@
 import { Button, Card, Col, ListGroup, Spinner } from "react-bootstrap";
 import useGetTokenAndProducts from "../hooks/useGetTokenAndProducts";
 import useProductsStore from "../stores/useProductsStore";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -29,6 +30,7 @@ export default function Products({}: Props) {
               : null}
           </ListGroup>
         </Card>
+        <Link to={"/member"}>Member</Link>
       </Col>
     </div>
   );

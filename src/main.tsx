@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { worker } from "./mocks/browser";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
+import Member from "./pages/Member";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path: "/member",
+    element: <Member />,
   },
 ]);
 

@@ -25,4 +25,17 @@ export const handlers = [
       ctx.json({ products: products })
     );
   }),
+  rest.post("/api/member", async (req, res, ctx) => {
+    const memberName = await req.json<string>();
+
+    return res(
+      ctx.status(200),
+      ctx.delay(),
+      ctx.json({
+        name: memberName,
+        address: faker.location.streetAddress(),
+        job: faker.person.jobType(),
+      })
+    );
+  }),
 ];
