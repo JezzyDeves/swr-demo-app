@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { useTokenStore } from "../stores/useTokenStore";
 import { getToken } from "../services/getToken";
+import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
@@ -14,10 +15,14 @@ export const useLogin = () => {
     }
   );
   const setToken = useTokenStore((state) => state.setToken);
+  const navigate = useNavigate();
+
   async function login(): Promise<string> {
     let token: string = await getToken();
 
     setToken(token);
+
+    navigate("/products");
 
     return token;
   }

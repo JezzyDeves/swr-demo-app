@@ -1,12 +1,10 @@
 import { Button, Card, Col, Spinner } from "react-bootstrap";
 import { useLogin } from "../hooks/useLogin";
-import { useTokenStore } from "../stores/useTokenStore";
 
 type Props = {};
 
 export default function Login({}: Props) {
   let { isLoading, fetch } = useLogin();
-  const token = useTokenStore((state) => state.token);
 
   return (
     <Col className="d-flex bg-primary-subtle vh-100 justify-content-center align-items-center">
@@ -20,7 +18,6 @@ export default function Login({}: Props) {
               <Button onClick={() => fetch()}>Login</Button>
             )}
           </Card.Body>
-          <Card.Footer>{token ? token : null}</Card.Footer>
         </Card>
       </Col>
     </Col>

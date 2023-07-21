@@ -15,10 +15,14 @@ export const handlers = [
 
     let products = [];
 
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 10; index++) {
       products.push(faker.commerce.product());
     }
 
-    res(ctx.status(200), ctx.delay(2500), ctx.json(products));
+    return res(
+      ctx.status(200),
+      ctx.delay(2500),
+      ctx.json({ products: products })
+    );
   }),
 ];
