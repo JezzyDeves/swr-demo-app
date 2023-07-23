@@ -20,7 +20,10 @@ export default function Products({}: Props) {
               <Button onClick={() => getProducts()}>Get Products</Button>
             )}
           </Card.Header>
-          <ListGroup variant="flush">
+          <ListGroup className="text-center" variant="flush">
+            <ListGroup.Item key={crypto.randomUUID()}>
+              <Link to={"/member"}>Member</Link>
+            </ListGroup.Item>
             {products
               ? products.map((product) => (
                   <ListGroup.Item key={crypto.randomUUID()}>
@@ -30,7 +33,6 @@ export default function Products({}: Props) {
               : null}
           </ListGroup>
         </Card>
-        <Link to={"/member"}>Member</Link>
       </Col>
     </div>
   );

@@ -5,7 +5,7 @@ import useCreateMember from "../hooks/useCreateMember";
 type Props = {};
 
 export default function Member({}: Props) {
-  const { fetch: createMember, isLoading } = useCreateMember();
+  const { fetch: createMember, isLoading, data } = useCreateMember();
   const [name, setName] = useState({ name: "" });
 
   return (
@@ -28,6 +28,10 @@ export default function Member({}: Props) {
                   <Button onClick={() => createMember(name)}>
                     Create New Member
                   </Button>
+
+                  <Col>{data?.name.name}</Col>
+                  <Col>{data?.job}</Col>
+                  <Col>{data?.address}</Col>
                 </Stack>
               </>
             )}

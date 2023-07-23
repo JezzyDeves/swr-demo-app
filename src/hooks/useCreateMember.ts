@@ -1,28 +1,24 @@
+import { useState } from "react";
 import useSWR from "swr";
 import createMember from "../services/createMember";
-import { useEffect, useState } from "react";
 
 const useCreateMember = () => {
-  const [name, setName] = useState({ name: "" });
-  const [shouldFetch, setShouldFetch] = useState(false);
-  const { isLoading, isValidating, mutate } = useSWR(
-    shouldFetch ? ["/api/member", name] : null,
-    ([, name]) => createMember(name)
+  const [name, setName] = useState({ name: "Test Name" });
+  const { data, isLoading, isValidating, mutate } = useSWR(
+    ["/api/member", name],
+    ([key, name]) => createMember(name),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
 
   function call(name: { name: string }) {
     mutate();
     setName(name);
-    setShouldFetch(true);
   }
 
-  useEffect(() => {
-    if (isLoading === false && !isValidating && shouldFetch) {
-      setShouldFetch(false);
-    }
-  }, [isLoading, isValidating]);
-
-  return { isLoading: isLoading || isValidating, fetch: call };
+  return { isLoading: isLoading || isValidating, fetch: call, data };
 };
 
 export default useCreateMember;
